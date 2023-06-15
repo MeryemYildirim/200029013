@@ -1,0 +1,37 @@
+3- What is memoization? Implement a function that computes the Fibonacci numbers with memoization.
+// Memoization is a specific form of caching used in dynamic programming. Caching is a way to speed our programs and hold some data in an accessible box for later use.
+// It stores the previous result and returns the others instantaneously when we call without delay. Memoization is an optimization technique in caching that results when the same set of arguments result in the same output and performant web applications. 
+
+package com.codeahoy.ex;
+
+public class Main {
+
+    private static final int MAX_NUMS = 45;
+
+    // A cache to hold results
+    private final static long[] fibCache =
+            new long[MAX_NUMS];
+
+    public static long fib(int n) {
+        if (n <= 1) {
+            return n;
+        } else if (fibCache[n] != 0) {
+            // we found previous computed result
+            // just return it.
+            return fibCache[n];
+
+        } else {
+            long l = fib(n - 1) + fib(n - 2);
+            fibCache[n] = l;
+            return fibCache[n];
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 1; i < MAX_NUMS; i++) {
+            System.out.print(fib(i) + ", ");
+        }
+
+        System.out.println("..."); // Print nice
+    }
+}
